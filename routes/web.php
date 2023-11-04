@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Post;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,55 +30,7 @@ Route::get('/about', function () {
     ]);
 });
 
-Route::get('/blog', function () {
-    $blog_posts = [
-        [
-            "title" => "Judul Post Pertama",
-            "slug" => "judul-post-pertama",
-            "author" => "Muhammad Anggi Kusuma",
-            "body" => "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non nulla veniam amet, in natus cumque, culpa beatae nihil, error vero quibusdam? Id quos maxime sequi perspiciatis corrupti libero blanditiis mollitia quas atque ipsam, sed illo eius optio numquam voluptatibus unde incidunt voluptatum sint quia voluptates voluptatem provident. Distinctio qui error accusantium sunt sint placeat soluta ipsa assumenda praesentium quam tenetur ducimus, eaque quia pariatur voluptas nesciunt amet mollitia odit natus? Sint possimus cumque voluptates blanditiis harum in, voluptatibus mollitia temporibus?"
-        ],
-        [
-            "title" => "Judul Post Kedua",
-            "slug" => "judul-post-kedua",
-            "author" => "Muhammad Angga Kusuma",
-            "body" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque rem ipsa quibusdam, doloribus laborum dicta quos labore quaerat nihil voluptatibus soluta obcaecati, corrupti vel, deleniti totam quae commodi quod? Molestias explicabo, quisquam illum fuga corporis dolor excepturi dicta sapiente temporibus ab blanditiis accusamus dignissimos dolore, eos officia? Debitis culpa soluta, tempora sint neque cupiditate dolorum exercitationem porro maiores consequuntur consectetur suscipit provident fuga quia, nihil magni cumque ipsam, rerum officia! Expedita, deleniti! Ut fugit provident ipsum, et explicabo reprehenderit. Quasi pariatur cupiditate ab amet molestiae voluptas, incidunt deserunt corporis beatae minima nulla facilis eligendi adipisci officia a dolorum accusamus illo!"
-        ],
-    ];
-
-    return view('posts', [
-        "title" => "Posts",
-        "posts" => $blog_posts
-    ]);
-});
+Route::get('/blog', [PostController::class, 'index']);
 
 // Halaman single post
-Route::get('posts/{slug}', function($slug) {
-    $blog_posts = [
-        [
-            "title" => "Judul Post Pertama",
-            "slug" => "judul-post-pertama",
-            "author" => "Muhammad Anggi Kusuma",
-            "body" => "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non nulla veniam amet, in natus cumque, culpa beatae nihil, error vero quibusdam? Id quos maxime sequi perspiciatis corrupti libero blanditiis mollitia quas atque ipsam, sed illo eius optio numquam voluptatibus unde incidunt voluptatum sint quia voluptates voluptatem provident. Distinctio qui error accusantium sunt sint placeat soluta ipsa assumenda praesentium quam tenetur ducimus, eaque quia pariatur voluptas nesciunt amet mollitia odit natus? Sint possimus cumque voluptates blanditiis harum in, voluptatibus mollitia temporibus?"
-        ],
-        [
-            "title" => "Judul Post Kedua",
-            "slug" => "judul-post-kedua",
-            "author" => "Muhammad Angga Kusuma",
-            "body" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque rem ipsa quibusdam, doloribus laborum dicta quos labore quaerat nihil voluptatibus soluta obcaecati, corrupti vel, deleniti totam quae commodi quod? Molestias explicabo, quisquam illum fuga corporis dolor excepturi dicta sapiente temporibus ab blanditiis accusamus dignissimos dolore, eos officia? Debitis culpa soluta, tempora sint neque cupiditate dolorum exercitationem porro maiores consequuntur consectetur suscipit provident fuga quia, nihil magni cumque ipsam, rerum officia! Expedita, deleniti! Ut fugit provident ipsum, et explicabo reprehenderit. Quasi pariatur cupiditate ab amet molestiae voluptas, incidunt deserunt corporis beatae minima nulla facilis eligendi adipisci officia a dolorum accusamus illo!"
-        ],
-    ];
-    
-    $new_post = [];
-
-    foreach($blog_posts as $post) {
-        if($post["slug"] === $slug) {
-            $new_post = $post;
-        }
-    }
-
-    return view('post', [
-        "title" => "Single Post",
-        "post" => $new_post
-    ]);
-});
+Route::get('posts/{slug}', [PostController::class, 'show']);
