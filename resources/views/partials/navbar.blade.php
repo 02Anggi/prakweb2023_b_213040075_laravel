@@ -20,5 +20,10 @@
         </li>
       </ul>
     </div>
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a href="/login" class="nav-link {{ ($active === "login") ? 'active' : '' }}"><i class="bi bi-box-arrow-in-right mx-1"></i>Login</a>
+          </li>
+      </ul>
   </div>
 </nav>
