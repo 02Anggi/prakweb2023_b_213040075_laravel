@@ -1,4 +1,4 @@
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse min-vh-100">
     <div class="position-sticky pt-3">
         <ul class="nav flex-column">
             <li class="nav-item">
@@ -9,7 +9,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard/posts') ? 'active' : '' }} text-decoration-none text-dark"
+            <a class="nav-link {{ Request::is('dashboard/posts*') ? 'active' : '' }} text-decoration-none text-dark"
                     href="/dashboard/posts">
                     <i data-feather="file-text"></i>
                     My Posts
